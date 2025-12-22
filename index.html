@@ -215,7 +215,51 @@
             font-size: 0.9rem;
             color: var(--gray-medium);
             letter-spacing: 0.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .rsvp-contacts {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
             margin-bottom: 3rem;
+            padding: 1.5rem;
+            background: var(--gray-light);
+        }
+
+        .rsvp-contact {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .rsvp-contact-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .rsvp-contact-phone {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--black);
+            text-decoration: none;
+            font-size: 0.95rem;
+            letter-spacing: 0.05rem;
+            transition: color 0.3s ease;
+        }
+
+        .rsvp-contact-phone:hover {
+            color: var(--gray-dark);
+        }
+
+        .rsvp-contact-phone svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
         }
 
         .rsvp-form {
@@ -467,6 +511,136 @@
             fill: currentColor;
         }
 
+        /* Agenda Section */
+        .agenda-section {
+            padding: 5rem 2rem;
+            background: var(--black);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .agenda-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .agenda-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 300;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .agenda-subtitle {
+            font-size: 0.9rem;
+            color: var(--gray-medium);
+            letter-spacing: 0.2rem;
+            text-transform: uppercase;
+            margin-bottom: 3rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: rgba(255,255,255,0.2);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 1.5rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 12px;
+            background: var(--white);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-time {
+            flex: 1;
+            text-align: right;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            min-width: 100px;
+        }
+
+        .timeline-dot {
+            width: 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .timeline-event {
+            flex: 1;
+            text-align: left;
+            min-width: 100px;
+        }
+
+        .timeline-event-title {
+            font-size: 1rem;
+            font-weight: 400;
+            letter-spacing: 0.05rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-event-desc {
+            font-size: 0.8rem;
+            color: var(--gray-medium);
+            letter-spacing: 0.05rem;
+        }
+
+        @media (max-width: 480px) {
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+                align-items: flex-start;
+                padding-left: 50px;
+                gap: 0.5rem;
+            }
+
+            .timeline-item::before {
+                left: 20px;
+            }
+
+            .timeline-time {
+                text-align: left;
+                font-size: 1.1rem;
+            }
+
+            .timeline-dot {
+                display: none;
+            }
+
+            .timeline-event {
+                text-align: left;
+            }
+        }
+
         /* Footer */
         .footer {
             padding: 3rem 2rem;
@@ -555,7 +729,7 @@
     <!-- Image Gallery - Waters Edge Hotel & Wedding Theme -->
     <section class="gallery">
         <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=400&fit=crop" alt="Waters Edge Hotel Exterior">
+            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=400&fit=crop" alt="Hotel Exterior">
         </div>
         <div class="gallery-item">
             <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=400&h=400&fit=crop" alt="Wedding venue by the water">
@@ -570,7 +744,7 @@
             <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=400&h=400&fit=crop" alt="Wedding rings">
         </div>
         <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1478146896981-b80fe463b330?w=400&h=400&fit=crop" alt="Hotel waterfront view">
+            <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=400&h=400&fit=crop" alt="Wedding rings and flowers">
         </div>
     </section>
 
@@ -634,11 +808,92 @@
         </div>
     </section>
 
+    <!-- Agenda Section -->
+    <section class="agenda-section">
+        <div class="agenda-container fade-in">
+            <h2 class="agenda-title">Wedding Day Agenda</h2>
+            <p class="agenda-subtitle">Schedule of Celebrations</p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-time">9:00 AM</div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-event">
+                        <div class="timeline-event-title">Guest Arrival</div>
+                        <div class="timeline-event-desc">Welcome & Seating</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-time">10:00 AM</div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-event">
+                        <div class="timeline-event-title">Poruwa Ceremony</div>
+                        <div class="timeline-event-desc">Traditional Wedding Rituals</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-time">11:30 AM</div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-event">
+                        <div class="timeline-event-title">Photo Session</div>
+                        <div class="timeline-event-desc">Group & Family Photos</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-time">12:30 PM</div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-event">
+                        <div class="timeline-event-title">Wedding Lunch</div>
+                        <div class="timeline-event-desc">Reception & Dining</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-time">2:00 PM</div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-event">
+                        <div class="timeline-event-title">Cake Cutting</div>
+                        <div class="timeline-event-desc">Celebration Continues</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-time">3:00 PM</div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-event">
+                        <div class="timeline-event-title">Farewell</div>
+                        <div class="timeline-event-desc">Thank You & Goodbye</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- RSVP Section -->
     <section class="rsvp-section">
         <div class="rsvp-container fade-in">
             <h2 class="rsvp-title">RSVP</h2>
             <p class="rsvp-subtitle">Kindly respond by December 15th, 2025</p>
+            
+            <div class="rsvp-contacts">
+                <div class="rsvp-contact">
+                    <span class="rsvp-contact-name">Malka</span>
+                    <a href="tel:+94767015245" class="rsvp-contact-phone">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        0767 015 245
+                    </a>
+                </div>
+                <div class="rsvp-contact">
+                    <span class="rsvp-contact-name">Sandun</span>
+                    <a href="tel:+94762645863" class="rsvp-contact-phone">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        0762 645 863
+                    </a>
+                </div>
+            </div>
             
             <form class="rsvp-form" id="rsvpForm">
                 <div class="form-group">
