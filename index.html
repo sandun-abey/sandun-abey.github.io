@@ -394,6 +394,17 @@
             letter-spacing: 0.05rem;
         }
 
+        .venue-hotel a {
+            color: var(--black);
+            text-decoration: none;
+            border-bottom: 1px solid var(--gray-light);
+            transition: all 0.3s ease;
+        }
+
+        .venue-hotel a:hover {
+            border-bottom-color: var(--black);
+        }
+
         .venue-hall {
             font-size: 1rem;
             color: var(--gray-medium);
@@ -602,7 +613,7 @@
             
             <div class="venue-card">
                 <div class="venue-icon">🏨</div>
-                <h3 class="venue-hotel">Sample Hotel</h3>
+                <h3 class="venue-hotel"><a href="https://www.watersedge.lk/we-venue/view/" target="_blank" rel="noopener noreferrer">Sample Hotel</a></h3>
                 <p class="venue-hall">Sample Hall</p>
                 
                 <div class="venue-ceremony">
