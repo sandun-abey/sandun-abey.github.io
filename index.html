@@ -3,1018 +3,367 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding of Malka & Sandun</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --black: #1a1a1a;
-            --white: #fafafa;
-            --gray-light: #e8e8e8;
-            --gray-medium: #888;
-            --gray-dark: #333;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--white);
-            color: var(--black);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 2rem;
-            background: linear-gradient(135deg, var(--white) 0%, var(--gray-light) 100%);
-            position: relative;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                radial-gradient(circle at 20% 80%, rgba(0,0,0,0.03) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(0,0,0,0.03) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .ornament {
-            font-size: 2rem;
-            color: var(--gray-medium);
-            letter-spacing: 1rem;
-            margin-bottom: 1rem;
-            opacity: 0.5;
-        }
-
-        .pre-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.2rem;
-            font-weight: 300;
-            letter-spacing: 0.5rem;
-            text-transform: uppercase;
-            color: var(--gray-medium);
-            margin-bottom: 1rem;
-        }
-
-        .couple-names {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            font-weight: 300;
-            font-style: italic;
-            letter-spacing: 0.1em;
-            margin-bottom: 0.5rem;
-            line-height: 1.2;
-        }
-
-        .couple-names .ampersand {
-            display: block;
-            font-size: 0.5em;
-            margin: 0.5rem 0;
-            font-style: normal;
-            color: var(--gray-medium);
-        }
-
-        .wedding-date {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
-            font-weight: 300;
-            letter-spacing: 0.3rem;
-            color: var(--gray-dark);
-            margin-top: 2rem;
-            padding: 1rem 2rem;
-            border: 1px solid var(--gray-light);
-        }
-
-        /* Image Gallery */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2px;
-            padding: 2rem 0;
-            background: var(--black);
-        }
-
-        .gallery-item {
-            aspect-ratio: 1;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(100%);
-            transition: all 0.5s ease;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.05);
-            filter: grayscale(80%);
-        }
-
-        /* Countdown Section */
-        .countdown-section {
-            padding: 5rem 2rem;
-            background: var(--black);
-            color: var(--white);
-            text-align: center;
-        }
-
-        .countdown-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            font-weight: 300;
-            letter-spacing: 0.2rem;
-            margin-bottom: 3rem;
-        }
-
-        .countdown-timer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .countdown-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-width: 80px;
-            padding: 1.5rem 1rem;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .countdown-number {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2rem, 6vw, 3.5rem);
-            font-weight: 300;
-            line-height: 1;
-        }
-
-        .countdown-label {
-            font-size: 0.7rem;
-            letter-spacing: 0.2rem;
-            text-transform: uppercase;
-            color: var(--gray-medium);
-            margin-top: 0.5rem;
-        }
-
-        .countdown-separator {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem;
-            color: var(--gray-medium);
-            padding: 0 0.5rem;
-        }
-
-        /* RSVP Section */
-        .rsvp-section {
-            padding: 5rem 2rem;
-            background: var(--white);
-            text-align: center;
-        }
-
-        .rsvp-container {
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .rsvp-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 300;
-            font-style: italic;
-            margin-bottom: 0.5rem;
-        }
-
-        .rsvp-subtitle {
-            font-size: 0.9rem;
-            color: var(--gray-medium);
-            letter-spacing: 0.1rem;
-            margin-bottom: 2rem;
-        }
-
-        .rsvp-contacts {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            margin-bottom: 3rem;
-            padding: 1.5rem;
-            background: var(--gray-light);
-        }
-
-        .rsvp-contact {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.3rem;
-        }
-
-        .rsvp-contact-name {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-
-        .rsvp-contact-phone {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--black);
-            text-decoration: none;
-            font-size: 0.95rem;
-            letter-spacing: 0.05rem;
-            transition: color 0.3s ease;
-        }
-
-        .rsvp-contact-phone:hover {
-            color: var(--gray-dark);
-        }
-
-        .rsvp-contact-phone svg {
-            width: 14px;
-            height: 14px;
-            fill: currentColor;
-        }
-
-        .rsvp-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            text-align: left;
-        }
-
-        .form-label {
-            font-size: 0.75rem;
-            letter-spacing: 0.15rem;
-            text-transform: uppercase;
-            color: var(--gray-dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .form-input {
-            padding: 1rem;
-            border: 1px solid var(--gray-light);
-            background: transparent;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: var(--black);
-        }
-
-        .radio-group {
-            display: flex;
-            gap: 2rem;
-            margin-top: 0.5rem;
-        }
-
-        .radio-option {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            cursor: pointer;
-        }
-
-        .radio-option input[type="radio"] {
-            appearance: none;
-            width: 20px;
-            height: 20px;
-            border: 1px solid var(--gray-medium);
-            border-radius: 50%;
-            cursor: pointer;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .radio-option input[type="radio"]:checked {
-            border-color: var(--black);
-        }
-
-        .radio-option input[type="radio"]:checked::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 10px;
-            height: 10px;
-            background: var(--black);
-            border-radius: 50%;
-        }
-
-        .radio-option span {
-            font-size: 0.9rem;
-            letter-spacing: 0.05rem;
-        }
-
-        .submit-btn {
-            padding: 1.2rem 3rem;
-            background: var(--black);
-            color: var(--white);
-            border: none;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.8rem;
-            letter-spacing: 0.2rem;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 1rem;
-        }
-
-        .submit-btn:hover {
-            background: var(--gray-dark);
-            transform: translateY(-2px);
-        }
-
-        .success-message {
-            display: none;
-            padding: 2rem;
-            background: var(--gray-light);
-            text-align: center;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .success-message.show {
-            display: block;
-        }
-
-        .success-message h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
-            font-weight: 400;
-            margin-bottom: 0.5rem;
-        }
-
-        .success-message p {
-            color: var(--gray-medium);
-            font-size: 0.9rem;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Venue Section */
-        .venue-section {
-            padding: 5rem 2rem;
-            background: var(--gray-light);
-            text-align: center;
-        }
-
-        .venue-container {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .venue-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 300;
-            font-style: italic;
-            margin-bottom: 0.5rem;
-        }
-
-        .venue-subtitle {
-            font-size: 0.9rem;
-            color: var(--gray-medium);
-            letter-spacing: 0.2rem;
-            text-transform: uppercase;
-            margin-bottom: 3rem;
-        }
-
-        .venue-card {
-            background: var(--white);
-            padding: 3rem 2rem;
-            border: 1px solid var(--gray-light);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
-        }
-
-        .venue-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            opacity: 0.7;
-        }
-
-        .venue-hotel {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
-            font-weight: 400;
-            margin-bottom: 0.5rem;
-            letter-spacing: 0.05rem;
-        }
-
-        .venue-hotel a {
-            color: var(--black);
-            text-decoration: none;
-            border-bottom: 1px solid var(--gray-light);
-            transition: all 0.3s ease;
-        }
-
-        .venue-hotel a:hover {
-            border-bottom-color: var(--black);
-        }
-
-        .venue-hall {
-            font-size: 1rem;
-            color: var(--gray-medium);
-            letter-spacing: 0.15rem;
-            text-transform: uppercase;
-            margin-bottom: 2rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid var(--gray-light);
-        }
-
-        .venue-ceremony {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .ceremony-time {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
-            font-weight: 500;
-        }
-
-        .ceremony-type {
-            font-size: 0.9rem;
-            color: var(--gray-dark);
-            letter-spacing: 0.1rem;
-        }
-
-        .venue-address {
-            font-size: 0.95rem;
-            color: var(--gray-dark);
-            line-height: 1.8;
-            margin-bottom: 2rem;
-        }
-
-        .venue-map-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
-            background: var(--black);
-            color: var(--white);
-            text-decoration: none;
-            font-size: 0.8rem;
-            letter-spacing: 0.15rem;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-        }
-
-        .venue-map-link:hover {
-            background: var(--gray-dark);
-            transform: translateY(-2px);
-        }
-
-        .venue-map-link svg {
-            width: 16px;
-            height: 16px;
-            fill: currentColor;
-        }
-
-        /* Agenda Section */
-        .agenda-section {
-            padding: 5rem 2rem;
-            background: var(--black);
-            color: var(--white);
-            text-align: center;
-        }
-
-        .agenda-container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .agenda-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 300;
-            font-style: italic;
-            margin-bottom: 0.5rem;
-        }
-
-        .agenda-subtitle {
-            font-size: 0.9rem;
-            color: var(--gray-medium);
-            letter-spacing: 0.2rem;
-            text-transform: uppercase;
-            margin-bottom: 3rem;
-        }
-
-        .timeline {
-            position: relative;
-            padding-left: 0;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            top: 0;
-            bottom: 0;
-            width: 1px;
-            background: rgba(255,255,255,0.2);
-        }
-
-        .timeline-item {
-            position: relative;
-            padding: 1.5rem 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 2rem;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 12px;
-            height: 12px;
-            background: var(--white);
-            border-radius: 50%;
-            z-index: 1;
-        }
-
-        .timeline-time {
-            flex: 1;
-            text-align: right;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.3rem;
-            font-weight: 400;
-            min-width: 100px;
-        }
-
-        .timeline-dot {
-            width: 40px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .timeline-event {
-            flex: 1;
-            text-align: left;
-            min-width: 100px;
-        }
-
-        .timeline-event-title {
-            font-size: 1rem;
-            font-weight: 400;
-            letter-spacing: 0.05rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .timeline-event-desc {
-            font-size: 0.8rem;
-            color: var(--gray-medium);
-            letter-spacing: 0.05rem;
-        }
-
-        @media (max-width: 480px) {
-            .timeline::before {
-                left: 20px;
-            }
-
-            .timeline-item {
-                flex-direction: column;
-                align-items: flex-start;
-                padding-left: 50px;
-                gap: 0.5rem;
-            }
-
-            .timeline-item::before {
-                left: 20px;
-            }
-
-            .timeline-time {
-                text-align: left;
-                font-size: 1.1rem;
-            }
-
-            .timeline-dot {
-                display: none;
-            }
-
-            .timeline-event {
-                text-align: left;
-            }
-        }
-
-        /* Footer */
-        .footer {
-            padding: 3rem 2rem;
-            background: var(--black);
-            color: var(--white);
-            text-align: center;
-        }
-
-        .footer-text {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.2rem;
-            font-style: italic;
-            color: var(--gray-medium);
-        }
-
-        .footer-names {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
-            margin-top: 0.5rem;
-            letter-spacing: 0.1rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .gallery {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .countdown-timer {
-                gap: 0.5rem;
-            }
-
-            .countdown-item {
-                min-width: 60px;
-                padding: 1rem 0.5rem;
-            }
-
-            .countdown-separator {
-                display: none;
-            }
-
-            .radio-group {
-                flex-direction: column;
-                gap: 1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .countdown-item {
-                min-width: 50px;
-                padding: 0.8rem 0.4rem;
-            }
-
-            .countdown-label {
-                font-size: 0.6rem;
-                letter-spacing: 0.1rem;
-            }
-        }
-
-        /* Scroll animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+    <title>Sandun Abeygunawardana | Full Stack Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Animated Background -->
+    <div class="bg-grid"></div>
+    <div class="bg-gradient"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand">SA</div>
+        <div class="nav-links">
+            <a href="#about" class="nav-link">About</a>
+            <a href="#skills" class="nav-link">Skills</a>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#research" class="nav-link">Research</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
+        <button class="nav-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <a href="#about" class="mobile-link">About</a>
+        <a href="#skills" class="mobile-link">Skills</a>
+        <a href="#projects" class="mobile-link">Projects</a>
+        <a href="#research" class="mobile-link">Research</a>
+        <a href="#contact" class="mobile-link">Contact</a>
+    </div>
+
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="ornament">✦ ✦ ✦</div>
-        <p class="pre-title">The Wedding of</p>
-        <h1 class="couple-names">
-            Malka
-            <span class="ampersand">&</span>
-            Sandun
-        </h1>
-        <div class="wedding-date">January 1st, 2027</div>
-    </section>
-
-    <!-- Image Gallery - Waters Edge Hotel & Wedding Theme -->
-    <section class="gallery">
-        <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=400&fit=crop" alt="Hotel Exterior">
-        </div>
-        <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=400&h=400&fit=crop" alt="Wedding venue by the water">
-        </div>
-        <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=400&h=400&fit=crop" alt="Elegant wedding setup">
-        </div>
-        <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=400&h=400&fit=crop" alt="Lakeside venue">
-        </div>
-        <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=400&h=400&fit=crop" alt="Wedding rings">
-        </div>
-        <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=400&h=400&fit=crop" alt="Wedding rings and flowers">
-        </div>
-    </section>
-
-    <!-- Countdown Section -->
-    <section class="countdown-section">
-        <h2 class="countdown-title fade-in">Counting Down to Our Special Day</h2>
-        <div class="countdown-timer fade-in">
-            <div class="countdown-item">
-                <span class="countdown-number" id="months">00</span>
-                <span class="countdown-label">Months</span>
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Available for opportunities</div>
+            <h1 class="hero-title">
+                <span class="line">Hi, I'm</span>
+                <span class="line highlight">Sandun</span>
+                <span class="line">Abeygunawardana</span>
+            </h1>
+            <p class="hero-subtitle">
+                <span class="typing-text"></span>
+                <span class="cursor">|</span>
+            </p>
+            <p class="hero-description">
+                A passionate Full Stack Software Engineer focused on building clean, 
+                efficient, and scalable solutions. Transforming ideas into reality through code.
+            </p>
+            <div class="hero-cta">
+                <a href="#projects" class="btn btn-primary">View My Work</a>
+                <a href="#contact" class="btn btn-secondary">Get in Touch</a>
             </div>
-            <span class="countdown-separator">:</span>
-            <div class="countdown-item">
-                <span class="countdown-number" id="days">00</span>
-                <span class="countdown-label">Days</span>
-            </div>
-            <span class="countdown-separator">:</span>
-            <div class="countdown-item">
-                <span class="countdown-number" id="hours">00</span>
-                <span class="countdown-label">Hours</span>
-            </div>
-            <span class="countdown-separator">:</span>
-            <div class="countdown-item">
-                <span class="countdown-number" id="minutes">00</span>
-                <span class="countdown-label">Minutes</span>
-            </div>
-            <span class="countdown-separator">:</span>
-            <div class="countdown-item">
-                <span class="countdown-number" id="seconds">00</span>
-                <span class="countdown-label">Seconds</span>
+            <div class="hero-social">
+                <a href="https://github.com/sandun-abey" target="_blank" class="social-link" aria-label="GitHub">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                </a>
+                <a href="https://www.linkedin.com/in/sandun-abeygunawardana/" target="_blank" class="social-link" aria-label="LinkedIn">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </a>
             </div>
         </div>
-    </section>
-
-    <!-- Venue Section -->
-    <section class="venue-section">
-        <div class="venue-container fade-in">
-            <h2 class="venue-title">The Venue</h2>
-            <p class="venue-subtitle">Join us at this beautiful location</p>
-            
-            <div class="venue-card">
-                <div class="venue-icon">🏨</div>
-                <h3 class="venue-hotel"><a href="https://www.watersedge.lk/we-venue/view/" target="_blank" rel="noopener noreferrer">Sample Hotel</a></h3>
-                <p class="venue-hall">Sample Hall</p>
-                
-                <div class="venue-ceremony">
-                    <span class="ceremony-type">10.00 AM</span>
-                    <span class="ceremony-type">• Poruwa Ceremony</span>
+        <div class="hero-visual">
+            <div class="code-window">
+                <div class="window-header">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                    <span class="file-name">developer.js</span>
                 </div>
-                
-                <p class="venue-address">
-                    Ethul Kotte Road, Battaramulla<br>
-                    Sri Lanka
-                </p>
-                
-                <a href="https://maps.app.goo.gl" target="_blank" rel="noopener noreferrer" class="venue-map-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    View on Google Maps
+                <pre class="code-content"><code><span class="keyword">const</span> <span class="variable">developer</span> = {
+  <span class="property">name</span>: <span class="string">"Sandun Abeygunawardana"</span>,
+  <span class="property">role</span>: <span class="string">"Full Stack Developer"</span>,
+  <span class="property">skills</span>: [<span class="string">"React"</span>, <span class="string">"Node.js"</span>, <span class="string">"Python"</span>],
+  <span class="property">passion</span>: <span class="string">"Building scalable apps"</span>,
+  
+  <span class="function">code</span>() {
+    <span class="keyword">return</span> <span class="string">"Creating awesome things!"</span>;
+  }
+};</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-number">01.</span>
+                About Me
+            </h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        I'm a dedicated <strong>Software Engineer</strong> with a passion for developing innovative 
+                        solutions and exploring the realms of machine learning. My journey in tech has been driven 
+                        by curiosity and the desire to create meaningful impact through technology.
+                    </p>
+                    <p>
+                        With expertise in both frontend and backend development, I specialize in building 
+                        end-to-end applications that are not only functional but also scalable and maintainable. 
+                        I believe in writing clean code and following best practices.
+                    </p>
+                    <p>
+                        When I'm not coding, you'll find me exploring new technologies, contributing to research, 
+                        and continuously learning to stay ahead in this ever-evolving field.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <span class="stat-number">5+</span>
+                            <span class="stat-label">Technologies</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">10+</span>
+                            <span class="stat-label">Projects</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">1</span>
+                            <span class="stat-label">Publication</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="image-frame">
+                        <div class="placeholder-avatar">
+                            <span>SA</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section skills" id="skills">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-number">02.</span>
+                Tech Stack
+            </h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="category-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                    </div>
+                    <h3>Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">C#</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="category-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                    </div>
+                    <h3>Frontend</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Next.js</span>
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">Sass</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="category-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+                    </div>
+                    <h3>Backend</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Express</span>
+                        <span class="skill-tag">Django</span>
+                        <span class="skill-tag">ASP.NET</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="category-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+                    </div>
+                    <h3>Databases</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">MySQL</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="category-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+                    </div>
+                    <h3>Tools</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">VS Code</span>
+                        <span class="skill-tag">Postman</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section projects" id="projects">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-number">03.</span>
+                Featured Projects
+            </h2>
+            <div class="projects-grid">
+                <article class="project-card featured">
+                    <div class="project-content">
+                        <span class="project-label">Featured Project</span>
+                        <h3 class="project-title">Portfolio Website</h3>
+                        <div class="project-description">
+                            <p>A modern, responsive portfolio website showcasing my work and skills. 
+                            Built with clean code practices and smooth animations.</p>
+                        </div>
+                        <div class="project-tech">
+                            <span>HTML5</span>
+                            <span>CSS3</span>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/sandun-abey/sandun-abey.github.io" target="_blank" class="project-link" aria-label="GitHub">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                            </a>
+                            <a href="https://sandun-abey.github.io" target="_blank" class="project-link" aria-label="Live Demo">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                        </div>
+                    </div>
+                </article>
+                <article class="project-card">
+                    <div class="project-content">
+                        <span class="project-label">Project</span>
+                        <h3 class="project-title">Full Stack Application</h3>
+                        <div class="project-description">
+                            <p>A comprehensive full-stack application demonstrating proficiency in 
+                            modern web development practices and technologies.</p>
+                        </div>
+                        <div class="project-tech">
+                            <span>React</span>
+                            <span>Node.js</span>
+                            <span>MongoDB</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/sandun-abey" target="_blank" class="project-link" aria-label="GitHub">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            <div class="projects-cta">
+                <a href="https://github.com/sandun-abey" target="_blank" class="btn btn-outline">
+                    View All Projects on GitHub
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Agenda Section -->
-    <section class="agenda-section">
-        <div class="agenda-container fade-in">
-            <h2 class="agenda-title">Wedding Day Agenda</h2>
-            <p class="agenda-subtitle">Schedule of Celebrations</p>
-            
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-time">9:00 AM</div>
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-event">
-                        <div class="timeline-event-title">Guest Arrival</div>
-                        <div class="timeline-event-desc">Welcome & Seating</div>
-                    </div>
+    <!-- Research Section -->
+    <section class="section research" id="research">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-number">04.</span>
+                Research & Publications
+            </h2>
+            <div class="research-card">
+                <div class="research-badge">IEEE Publication</div>
+                <h3>Model Development for Child Developmental Milestone Assessment</h3>
+                <p>
+                    Collaborated on a research project focusing on assessing child developmental 
+                    milestones using machine learning techniques. This work demonstrates my commitment 
+                    to leveraging technology for societal benefit and my interest in AI/ML applications.
+                </p>
+                <div class="research-meta">
+                    <span class="conference">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                        4th International Conference on Advancements in Computing (ICAC) 2022
+                    </span>
+                    <span class="publisher">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                        IEEE Xplore Digital Library
+                    </span>
                 </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-time">10:00 AM</div>
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-event">
-                        <div class="timeline-event-title">Poruwa Ceremony</div>
-                        <div class="timeline-event-desc">Traditional Wedding Rituals</div>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-time">11:30 AM</div>
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-event">
-                        <div class="timeline-event-title">Photo Session</div>
-                        <div class="timeline-event-desc">Group & Family Photos</div>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-time">12:30 PM</div>
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-event">
-                        <div class="timeline-event-title">Wedding Lunch</div>
-                        <div class="timeline-event-desc">Reception & Dining</div>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-time">2:00 PM</div>
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-event">
-                        <div class="timeline-event-title">Cake Cutting</div>
-                        <div class="timeline-event-desc">Celebration Continues</div>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-time">3:00 PM</div>
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-event">
-                        <div class="timeline-event-title">Farewell</div>
-                        <div class="timeline-event-desc">Thank You & Goodbye</div>
-                    </div>
-                </div>
+                <a href="https://lnkd.in/g63iAYST" target="_blank" class="btn btn-secondary">
+                    View Publication
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- RSVP Section -->
-    <section class="rsvp-section">
-        <div class="rsvp-container fade-in">
-            <h2 class="rsvp-title">RSVP</h2>
-            <p class="rsvp-subtitle">Kindly respond by December 15th, 2025</p>
-            
-            <div class="rsvp-contacts">
-                <div class="rsvp-contact">
-                    <span class="rsvp-contact-name">Malka</span>
-                    <a href="tel:+94767015245" class="rsvp-contact-phone">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                        0767 015 245
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-number">05.</span>
+                Get In Touch
+            </h2>
+            <div class="contact-content">
+                <div class="contact-text">
+                    <h3>Let's work together!</h3>
+                    <p>
+                        I'm currently open to new opportunities and interesting projects. 
+                        Whether you have a question or just want to say hi, feel free to reach out!
+                    </p>
+                </div>
+                <div class="contact-links">
+                    <a href="https://www.linkedin.com/in/sandun-abeygunawardana/" target="_blank" class="contact-card">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </div>
+                        <span class="contact-label">LinkedIn</span>
+                        <span class="contact-value">Connect with me</span>
+                    </a>
+                    <a href="https://github.com/sandun-abey" target="_blank" class="contact-card">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        </div>
+                        <span class="contact-label">GitHub</span>
+                        <span class="contact-value">View my repos</span>
+                    </a>
+                    <a href="mailto:contact@example.com" class="contact-card">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        </div>
+                        <span class="contact-label">Email</span>
+                        <span class="contact-value">Say hello!</span>
                     </a>
                 </div>
-                <div class="rsvp-contact">
-                    <span class="rsvp-contact-name">Sandun</span>
-                    <a href="tel:+94762645863" class="rsvp-contact-phone">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                        0762 645 863
-                    </a>
-                </div>
-            </div>
-            
-            <form class="rsvp-form" id="rsvpForm">
-                <div class="form-group">
-                    <label class="form-label" for="guestName">Your Name</label>
-                    <input type="text" id="guestName" class="form-input" placeholder="Enter your full name" required>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Will you be attending?</label>
-                    <div class="radio-group">
-                        <label class="radio-option">
-                            <input type="radio" name="attendance" value="yes" required>
-                            <span>Joyfully Accept</span>
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="attendance" value="no">
-                            <span>Regretfully Decline</span>
-                        </label>
-                    </div>
-                </div>
-                
-                <button type="submit" class="submit-btn">Send Response</button>
-            </form>
-            
-            <div class="success-message" id="successMessage">
-                <h3>Thank You!</h3>
-                <p>Your response has been recorded. We look forward to celebrating with you!</p>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <p class="footer-text">With love and joy, we invite you to celebrate</p>
-        <p class="footer-names">Malka & Sandun</p>
+        <div class="container">
+            <p>Designed & Built by <strong>Sandun Abeygunawardana</strong></p>
+            <p class="footer-year">© 2025 All Rights Reserved</p>
+        </div>
     </footer>
 
-    <script>
-        // ============================================
-        // WEDDING DATE CONFIGURATION
-        // Change this date to update the countdown
-        // Format: 'YYYY-MM-DDTHH:MM:SS'
-        // ============================================
-        const WEDDING_DATE = '2027-01-01T00:00:00';
-        // ============================================
-
-        // Countdown Timer
-        function updateCountdown() {
-            const weddingDate = new Date(WEDDING_DATE);
-            const now = new Date();
-            const diff = weddingDate - now;
-
-            if (diff <= 0) {
-                document.getElementById('months').textContent = '00';
-                document.getElementById('days').textContent = '00';
-                document.getElementById('hours').textContent = '00';
-                document.getElementById('minutes').textContent = '00';
-                document.getElementById('seconds').textContent = '00';
-                return;
-            }
-
-            // Calculate time units
-            const seconds = Math.floor((diff / 1000) % 60);
-            const minutes = Math.floor((diff / 1000 / 60) % 60);
-            const hours = Math.floor((diff / 1000 / 60 / 60) % 24);
-            
-            // Calculate total days and months
-            const totalDays = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const months = Math.floor(totalDays / 30);
-            const days = totalDays % 30;
-
-            // Update DOM
-            document.getElementById('months').textContent = String(months).padStart(2, '0');
-            document.getElementById('days').textContent = String(days).padStart(2, '0');
-            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
-        }
-
-        // Update countdown every second
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
-
-        // RSVP Form Handler
-        const rsvpForm = document.getElementById('rsvpForm');
-        const successMessage = document.getElementById('successMessage');
-
-        rsvpForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('guestName').value;
-            const attendance = document.querySelector('input[name="attendance"]:checked').value;
-            
-            // Log the response (in a real app, you'd send this to a server)
-            console.log('RSVP Response:', { name, attendance });
-            
-            // Show success message
-            rsvpForm.style.display = 'none';
-            successMessage.classList.add('show');
-            
-            // Optional: Reset form after delay
-            setTimeout(() => {
-                rsvpForm.reset();
-            }, 1000);
-        });
-
-        // Scroll animations
-        const fadeElements = document.querySelectorAll('.fade-in');
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        });
-
-        fadeElements.forEach(el => observer.observe(el));
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
+
