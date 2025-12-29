@@ -1,7 +1,5 @@
 # sandun-abey.github.io
 
-![Portfolio Website](https://sandun-abey.github.io/)
-
 This repository hosts the source code for my personal portfolio website, accessible at [https://sandun-abey.github.io/](https://sandun-abey.github.io/). It is designed to showcase my projects, skills, and experiences.
 
 ## Features
