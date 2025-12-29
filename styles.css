@@ -763,6 +763,12 @@ body {
 }
 
 /* Research Section */
+.research .container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
 .research-card {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
@@ -771,6 +777,12 @@ body {
     backdrop-filter: blur(10px);
     position: relative;
     overflow: hidden;
+    transition: all var(--transition-base);
+}
+
+.research-card:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-4px);
 }
 
 .research-card::before {
